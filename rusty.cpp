@@ -1,2 +1,3 @@
-#include "scalars.h"
-#include "list.cpp"
+#include "scalars/scalars.h"
+#include "compounds/list.cpp"
+#include "compounds/vec.cpp"

@@ -23,7 +23,7 @@ public:
         }
     }
 
-    Vec& operator=(const List& other) {
+    Vec& operator=(const Vec& other) {
         
         return *this;
     }
