@@ -1,7 +1,7 @@
 #include <initializer_list>
 #include <iostream>
 
-#include "scalars.h"
+#include "scalars/scalars.h"
 #include "iter.cpp"
 
 template<typename T>

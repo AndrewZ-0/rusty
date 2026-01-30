@@ -1,4 +1,4 @@
-#include "scalars.h"
+#include "scalars/scalars.h"
 
 template<typename T, usize L>
 class Vec {
