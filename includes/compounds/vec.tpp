@@ -1,0 +1,62 @@
+template<typename T>
+Vec<T>::Vec() = default;
+template<typename T>
+Vec<T>::Vec(std::initializer_list<T> arr) {
+    for (const T& e : arr) append(e);
+}
+
+template<typename T>
+Vec<T>::~Vec() {delete[] arr;}
+
+template<typename T>
+void Vec<T>::append(const T& val) {
+    if (len == cap) grow();
+    arr[len++] = val;
+}
+template<typename T>
+template<usize L>
+void Vec<T>::extend(const T(&vals)[L]) {
+    if (len + L > cap) batch_grow(len + L);
+
+    for (usize i = 0; i < L; i++) {
+        arr[len++] = vals[i];
+    }
+}
+
+template<typename T>
+Vec<T>& Vec<T>::operator=(const Vec& other) {
+    //to be completed
+    return *this;
+}
+
+template<typename T>
+T& Vec<T>::operator[](usize i) {return arr[i];}
+template<typename T>
+const T& Vec<T>::operator[](usize i) const {return arr[i];}
+
+template<typename T>
+void Vec<T>::grow() {
+    cap = cap? cap * 2 : 1;
+    T* newarr = new T[cap];
+
+    for (usize i = 0; i < len; i++) {
+        newarr[i] = std::move(arr[i]);
+    }
+
+    delete[] arr;
+    arr = newarr;
+}
+template<typename T>
+void Vec<T>::batch_grow(usize target) {
+    if (!target) return;
+
+    cap = 2;
+    while (target >>= 1) cap <<= 1; 
+
+    T* newarr = new T[cap];
+    for (usize i = 0; i < len; i++)
+        newarr[i] = std::move(arr[i]);
+
+    delete[] arr;
+    arr = newarr;
+}

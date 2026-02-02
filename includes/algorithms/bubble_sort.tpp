@@ -1,6 +1,3 @@
-#include "../scalars/scalars.h"
-#include "../compounds/vec.cpp"
-
 template<typename T, usize L>
 void bubble_sort(T(&arr)[L]) {
     if (L < 2) return;
@@ -22,8 +19,8 @@ void bubble_sort(T(&arr)[L]) {
     }
 }
 
-template<typename T, usize L>
-void bubble_sort(Vec<T, L> &arr) {
+template<typename T>
+void bubble_sort(Vec<T> &arr) {
     if (arr.len < 2) return;
 
     usize i, j;
@@ -41,11 +38,4 @@ void bubble_sort(Vec<T, L> &arr) {
         }
         if (no_swap) break;
     }
-}
-
-int main() {
-    int arr[4] = {1, 5, 2, -1};
-    bubble_sort(arr);
-
-    return 0;
 }
