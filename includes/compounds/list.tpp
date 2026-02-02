@@ -12,9 +12,13 @@ List<T>::List(const List& other) {
 }
 template<typename T>
 List<T>::List(List&& other) noexcept: head(other.head), tail(other.tail), len(other.len) {
-    other.head = other.tail = nullptr;
+    other.head = nullptr;
+    other.tail = nullptr;
     other.len = 0;
 }
+
+template<typename T>
+usize List<T>::get_len() const {return len;}
 
 template<typename T>
 List<T>& List<T>::operator=(const List& other) {
@@ -59,6 +63,30 @@ void List<T>::prepend(const T& val) {
 }
 
 template<typename T>
+List<T> List<T>::slice(usize a, usize b) {
+    if (a > len) {
+        std::cerr << "Invlaid slice range: a out of range: " << a << " > " << len << "\n";
+        exit(1);
+    }
+    if (b > len) {
+        std::cerr << "Invlaid slice range: b out of range: " << b << " > " << len << "\n";
+        exit(1);
+    }
+    if (a > b) {
+        std::cerr << "Invlaid slice range: a > b (" << a << " > " << b << ")\n";
+        exit(1);
+    }
+
+    List<T> out;
+
+    for (usize i = a; i < b; i++) {
+        out.append((*this)[i]);
+    }
+
+    return out;
+}
+
+template<typename T>
 T& List<T>::operator[](usize index) {
     if (index >= len) throw std::out_of_range("Index out of bounds");
     
@@ -73,7 +101,7 @@ T& List<T>::operator[](usize index) {
     return curr->val;
 }
 template<typename T>
-T& List<T>::operator[](usize index) const {
+const T& List<T>::operator[](usize index) const {
     if (index >= len) throw std::out_of_range("Index out of bounds");
     
     Node<T>* curr;

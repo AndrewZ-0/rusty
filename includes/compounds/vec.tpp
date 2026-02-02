@@ -9,6 +9,12 @@ template<typename T>
 Vec<T>::~Vec() {delete[] arr;}
 
 template<typename T>
+usize Vec<T>::get_len() const {return len;}
+
+template<typename T>
+usize Vec<T>::get_cap() const {return cap;}
+
+template<typename T>
 void Vec<T>::append(const T& val) {
     if (len == cap) grow();
     arr[len++] = val;
@@ -21,6 +27,34 @@ void Vec<T>::extend(const T(&vals)[L]) {
     for (usize i = 0; i < L; i++) {
         arr[len++] = vals[i];
     }
+}
+
+template<typename T>
+Vec<T> Vec<T>::slice(usize a, usize b) {
+    if (a > len) {
+        std::cerr << "Invlaid slice range: a out of range: " << a << " > " << len << "\n";
+        exit(1);
+    }
+    if (b > len) {
+        std::cerr << "Invlaid slice range: b out of range: " << b << " > " << len << "\n";
+        exit(1);
+    }
+    if (a > b) {
+        std::cerr << "Invlaid slice range: a > b (" << a << " > " << b << ")\n";
+        exit(1);
+    }
+
+    usize n = b - a;
+    Vec<T> out;
+    out.batch_grow(n);
+
+    T* dest = out.arr;
+    for (usize i = a; i < b; i++) {
+        *dest++ = arr[i];
+    }
+    out.len = n;
+
+    return out;
 }
 
 template<typename T>

@@ -16,14 +16,12 @@ struct Node {
 template<typename T>
 class List {
 public:
-    Node<T>* head = nullptr;
-    Node<T>* tail = nullptr;
-    usize len = 0;
-
     List();
     List(std::initializer_list<T> lst);
     List(const List& other);
     List(List&& other) noexcept;
+
+    usize get_len() const;
 
     List& operator=(const List& other);
 
@@ -32,8 +30,10 @@ public:
     void append(const T& val);
     void prepend(const T& val);
 
+    List<T> slice(usize a, usize b);
+
     T& operator[](usize index);
-    T& operator[](usize index) const;
+    const T& operator[](usize index) const;
 
     friend std::ostream& operator<<(std::ostream& os, List& lst) {
         os << "[";
@@ -48,6 +48,10 @@ public:
     }
 
 private:
+    Node<T>* head = nullptr;
+    Node<T>* tail = nullptr;
+    usize len = 0;
+
     void clear();
 };
 

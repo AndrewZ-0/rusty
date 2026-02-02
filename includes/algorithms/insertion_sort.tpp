@@ -20,11 +20,11 @@ void insertion_sort(T(&arr)[L]) {
 
 template<typename T>
 void insertion_sort(Vec<T> &arr) {
-    if (arr.len < 2) return;
+    if (arr.get_len() < 2) return;
 
     usize i, j, largest_i;
     T temp, largest;
-    for (i = arr.len - 1; i > 0; i--) {
+    for (i = arr.get_len() - 1; i > 0; i--) {
         largest = arr[i];
         largest_i = i;
         for (j = i; j-- > 0;) {
@@ -40,11 +40,11 @@ void insertion_sort(Vec<T> &arr) {
 
 template<typename T>
 void insertion_sort(List<T> &lst) {
-    if (lst.len < 2) return;
+    if (lst.get_len() < 2) return;
 
     usize i, j, largest_i;
     T temp, largest;
-    for (i = lst.len - 1; i > 0; i--) {
+    for (i = lst.get_len() - 1; i > 0; i--) {
         largest = lst[i];
         largest_i = i;
         for (j = i; j-- > 0;) {

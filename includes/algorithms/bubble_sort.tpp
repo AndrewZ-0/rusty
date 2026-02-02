@@ -21,12 +21,12 @@ void bubble_sort(T(&arr)[L]) {
 
 template<typename T>
 void bubble_sort(Vec<T> &arr) {
-    if (arr.len < 2) return;
+    if (arr.get_len() < 2) return;
 
     usize i, j;
     T temp;
     bool no_swap;
-    for (i = arr.len - 1; i > 0; i--) {
+    for (i = arr.get_len() - 1; i > 0; i--) {
         no_swap = 1;
         for (j = 0; j < i; j++) {
             if (arr[j] > arr[j + 1]) {
@@ -42,12 +42,12 @@ void bubble_sort(Vec<T> &arr) {
 
 template<typename T>
 void bubble_sort(List<T> &lst) {
-    if (lst.len < 2) return;
+    if (lst.get_len() < 2) return;
 
     usize i, j;
     T temp;
     bool no_swap;
-    for (i = lst.len - 1; i > 0; i--) {
+    for (i = lst.get_len() - 1; i > 0; i--) {
         no_swap = 1;
         for (j = 0; j < i; j++) {
             if (lst[j] > lst[j + 1]) {
