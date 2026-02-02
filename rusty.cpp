@@ -6,7 +6,7 @@
 #include <iostream>
 
 int main() {
-    Vec<int> arr = {1, 5, 2, -1};
+    List<int> arr = {1, 5, 2, -1};
     bubble_sort(arr);
 
     std::cout << arr << std::endl;

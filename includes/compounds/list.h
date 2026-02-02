@@ -32,8 +32,8 @@ public:
     void append(const T& val);
     void prepend(const T& val);
 
-    T operator[](usize index);
-    T operator[](usize index) const;
+    T& operator[](usize index);
+    T& operator[](usize index) const;
 
     friend std::ostream& operator<<(std::ostream& os, List& lst) {
         os << "[";

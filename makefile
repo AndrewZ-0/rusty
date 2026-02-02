@@ -6,3 +6,6 @@ SRC = $(wildcard src/**/*.cpp)
 
 all:
 	$(CXX) ${CXXFLAGS} $(SRC) rusty.cpp -o ${TARGET}
+
+clean:
+	-rm -f *.o

@@ -39,3 +39,24 @@ void bubble_sort(Vec<T> &arr) {
         if (no_swap) break;
     }
 }
+
+template<typename T>
+void bubble_sort(List<T> &lst) {
+    if (lst.len < 2) return;
+
+    usize i, j;
+    T temp;
+    bool no_swap;
+    for (i = lst.len - 1; i > 0; i--) {
+        no_swap = 1;
+        for (j = 0; j < i; j++) {
+            if (lst[j] > lst[j + 1]) {
+                temp = lst[j];
+                lst[j] = lst[j + 1];
+                lst[j + 1] = temp;
+                no_swap = 0;
+            }
+        }
+        if (no_swap) break;
+    }
+}

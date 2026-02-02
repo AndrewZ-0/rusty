@@ -59,7 +59,7 @@ void List<T>::prepend(const T& val) {
 }
 
 template<typename T>
-T List<T>::operator[](usize index) {
+T& List<T>::operator[](usize index) {
     if (index >= len) throw std::out_of_range("Index out of bounds");
     
     Node<T>* curr;
@@ -73,7 +73,7 @@ T List<T>::operator[](usize index) {
     return curr->val;
 }
 template<typename T>
-T List<T>::operator[](usize index) const {
+T& List<T>::operator[](usize index) const {
     if (index >= len) throw std::out_of_range("Index out of bounds");
     
     Node<T>* curr;
