@@ -22,13 +22,9 @@ usize List<T>::get_len() const {return len;}
 
 template<typename T>
 List<T>& List<T>::operator=(List other) {
-    if (this != &other) {
-        clear();
-
-        for (Node<T>* curr = other.head; curr; curr = curr->nxt) {
-            append(curr->val);
-        }
-    }
+    std::swap(head, other.head);
+    std::swap(tail, other.tail);
+    std::swap(len, other.len);
 
     return *this;
 }
