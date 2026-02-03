@@ -21,12 +21,15 @@ template<typename T>
 usize List<T>::get_len() const {return len;}
 
 template<typename T>
-List<T>& List<T>::operator=(const List& other) {
+List<T>& List<T>::operator=(List other) {
     if (this != &other) {
         clear();
-        for (Node<T>* curr = other.head; curr; curr = curr->nxt)
+
+        for (Node<T>* curr = other.head; curr; curr = curr->nxt) {
             append(curr->val);
+        }
     }
+
     return *this;
 }
 

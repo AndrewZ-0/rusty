@@ -36,7 +36,7 @@ void Vec<T>::reserve(const usize target) {
             << target << "<" << len << "\n";
         exit(1);
     }
-    
+
     cap = target;
 
     T* newarr = new T[cap];
@@ -76,8 +76,11 @@ Vec<T> Vec<T>::slice(usize a, usize b) {
 }
 
 template<typename T>
-Vec<T>& Vec<T>::operator=(const Vec& other) {
-    //to be completed
+Vec<T>& Vec<T>::operator=(Vec other) {
+    std::swap(arr, other.arr);
+    std::swap(len, other.len);
+    std::swap(cap, other.cap);
+
     return *this;
 }
 
@@ -111,4 +114,16 @@ void Vec<T>::batch_grow(usize target) {
 
     delete[] arr;
     arr = newarr;
+}
+
+template<typename T>
+void Vec<T>::clear() {
+    for (usize i = 0; i < len; i++) {
+        arr[i].~T(); 
+    }
+
+    delete[] arr;
+    arr = nullptr;
+    len = 0;
+    cap = 0;
 }

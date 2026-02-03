@@ -22,10 +22,12 @@ public:
 
     Vec<T> slice(usize a, usize b);
 
-    Vec& operator=(const Vec& other);
+    Vec& operator=(Vec other);
 
     T& operator[](usize i);
     const T& operator[](usize i) const;
+
+    void clear();
 
 
     friend std::ostream& operator<<(std::ostream& os, Vec& vec) {

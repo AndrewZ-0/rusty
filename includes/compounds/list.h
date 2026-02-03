@@ -23,7 +23,7 @@ public:
 
     usize get_len() const;
 
-    List& operator=(const List& other);
+    List& operator=(List other);
 
     ~List();
 
