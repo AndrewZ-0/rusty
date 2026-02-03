@@ -18,6 +18,7 @@ public:
     void append(const T& val);
     template<usize L>
     void extend(const T(&vals)[L]);
+    void reserve(const usize target);
 
     Vec<T> slice(usize a, usize b);
 

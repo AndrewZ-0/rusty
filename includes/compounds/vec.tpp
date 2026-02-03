@@ -30,6 +30,24 @@ void Vec<T>::extend(const T(&vals)[L]) {
 }
 
 template<typename T>
+void Vec<T>::reserve(const usize target) {
+    if (target < len) {
+        std::cerr << "Cannot reserve less space than the current length of the vector:"
+            << target << "<" << len << "\n";
+        exit(1);
+    }
+    
+    cap = target;
+
+    T* newarr = new T[cap];
+    for (usize i = 0; i < len; i++)
+        newarr[i] = std::move(arr[i]);
+
+    delete[] arr;
+    arr = newarr;
+}
+
+template<typename T>
 Vec<T> Vec<T>::slice(usize a, usize b) {
     if (a > len) {
         std::cerr << "Invlaid slice range: a out of range: " << a << " > " << len << "\n";
