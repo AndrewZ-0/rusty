@@ -4,6 +4,17 @@ template<typename T>
 Vec<T>::Vec(std::initializer_list<T> arr) {
     for (const T& e : arr) append(e);
 }
+template<typename T>
+Vec<T>::Vec(std::initializer_list<T> init_lst) {
+    usize new_len = init_lst.size();
+    arr = batch_grow(new_len); 
+    const T *l = init_lst.begin();
+    T *p = arr;
+    T *end = arr + new_len;
+    for ( ; p < end; p++, l++) {
+        *p = *l;
+    }
+}
 
 template<typename T>
 Vec<T>::~Vec() {delete[] arr;}
@@ -76,7 +87,7 @@ Vec<T> Vec<T>::slice(usize a, usize b) {
 }
 
 template<typename T>
-Vec<T>& Vec<T>::operator=(Vec other) {
+Vec<T>& Vec<T>::operator=(Vec<T> other) {
     std::swap(arr, other.arr);
     std::swap(len, other.len);
     std::swap(cap, other.cap);

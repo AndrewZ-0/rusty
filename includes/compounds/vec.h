@@ -22,7 +22,7 @@ public:
 
     Vec<T> slice(usize a, usize b);
 
-    Vec& operator=(Vec other);
+    Vec<T>& operator=(Vec<T> other);
 
     T& operator[](usize i);
     const T& operator[](usize i) const;
